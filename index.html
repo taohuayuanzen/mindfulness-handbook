@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正念手册 · 桃源正念</title>
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { DEFAULT: '#2D5016', light: '#3d6b1e', dark: '#1e350e' },
+        accent: { DEFAULT: '#8B6914', light: '#a87e19' },
+        bg: '#F5F0E8',
+      },
+      fontFamily: {
+        serif: ['"Noto Serif SC"', 'serif'],
+        sans: ['"Noto Sans SC"', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#" onclick="TabRouter.switchTab('home'); return false;">
+      <span class="icon">🧘</span> 正念手册
+    </a>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="home" onclick="TabRouter.switchTab('home')">首页</button>
+      <button class="nav-tab" data-tab="all" onclick="TabRouter.switchTab('all')">全部</button>
+      <button class="nav-tab" data-tab="favorites" onclick="TabRouter.switchTab('favorites')">
+        收藏<span class="badge" id="fav-count-badge">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<div class="main-container">
+
+  <!-- Tab: Home -->
+  <div class="tab-panel active" id="tab-home">
+    <div class="home-date" id="home-date"></div>
+    <div class="home-title">✨ 今日推荐</div>
+    <div id="today-card-container"></div>
+    <button class="refresh-btn" onclick="TodayPick.refresh()">
+      <span>🔄</span> 换一个
+    </button>
+  </div>
+
+  <!-- Tab: All -->
+  <div class="tab-panel" id="tab-all">
+    <input type="text" class="search-box" id="search-input" placeholder="搜索练习名称、标签、摘要...">
+    <div class="filter-tags" id="filter-tags"></div>
+    <div id="all-exercises-container"></div>
+    <div class="no-results hidden" id="no-results">😕 没有找到匹配的练习，试试其他关键词吧</div>
+  </div>
+
+  <!-- Tab: Favorites -->
+  <div class="tab-panel" id="tab-favorites">
+    <div id="favorites-header"></div>
+    <div id="favorites-container"></div>
+    <div class="empty-state hidden" id="favorites-empty">
+      <div class="icon">📭</div>
+      <div class="title">还没有收藏练习</div>
+      <div class="desc">收藏你喜欢的正念练习，随时回来练习吧</div>
+      <div class="actions">
+        <button class="empty-state-btn primary" onclick="TabRouter.switchTab('home')">🏠 去首页看看</button>
+        <button class="empty-state-btn secondary" onclick="TabRouter.switchTab('all')">📋 浏览全部练习</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
