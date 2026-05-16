@@ -168,15 +168,7 @@ const RenderEngine = {
         ${isTodayCard ? '<div class="today-badge">⭐ 今日推荐</div>' : ''}
         <span class="card-category ${ex.category}">${cat.icon} ${cat.label}</span>
         <div class="card-title">${ex.title}</div>
-        <div class="card-meta">
-          <span>⏱ ${ex.duration}</span>
-          <span>📖 ${ex.source}</span>
-        </div>
         <div class="card-summary">${ex.summary}</div>
-        ${ex.tags && ex.tags.length > 0 ? `
-        <div class="card-tags">
-          ${ex.tags.map(t => `<span class="card-tag">#${t}</span>`).join('')}
-        </div>` : ''}
         <div class="card-actions">
           <button class="btn-fav ${isFav ? 'active' : ''}" data-exercise-id="${ex.id}" onclick="Favorites.toggle(${ex.id})" aria-label="收藏">
             ${isFav ? '★' : '☆'}
